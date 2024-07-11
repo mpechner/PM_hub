@@ -13,6 +13,8 @@ Also asked "what is the bibliography for this response"
 * debian wiki wifi notes https://wiki.debian.org/WiFi/HowToUse
 * Raspberry pi not in making it an AP https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md
 
+## turn off wpa_supplicatnad and reomve wlan0 from NetworkManager
+
 ## presented steps
 
 ```
