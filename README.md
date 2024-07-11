@@ -1,7 +1,7 @@
 # PM_hub
 parachutemobile-aprs-hub
 
-After talking to a friend he convinced me to abandon bluetooth and us wifi.
+After talking to a friend he convinced me to abandon bluetooth and use wifi.
 
 # Setting up Raspberry Pi as a AP
 I asked chatgpt "can I setup the raspbetrry pi to be an wifi AP, then using the  ethernet port on my home network to ssh into it"
