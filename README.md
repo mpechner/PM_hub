@@ -15,7 +15,14 @@ Also asked "what is the bibliography for this response"
 
 ## presented steps
 
-`sudo apt install hostapd dnsmasq`
+```
+sudo apt update
+sudo apt upgrade
+```
+
+```
+sudo apt install hostapd dnsmasq
+```
 
 edit /etc/dhcpcd.conf and add the following contents
 ```
@@ -44,7 +51,9 @@ rsn_pairwise=CCMP
 
 Configure dnsmasq
 
-`sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig`
+```
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+```
 
 Edit /etc/dnsmasq.conf and  set the range.  make sure you are good with the choose IP range.
 ```
@@ -61,4 +70,6 @@ sudo systemctl enable dnsmasq
 sudo systemctl start hostapd
 sudo systemctl start dnsmasq
 ```
-`sudo reboot`
+```
+sudo reboot
+```
