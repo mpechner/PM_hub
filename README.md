@@ -20,6 +20,8 @@ https://docs.arduino.cc/tutorials/uno-wifi-rev2/uno-wifi-r2-mqtt-device-to-devic
 Setup the arduino env for this board:\
 https://learn.adafruit.com/adafruit-qt-py-esp32-s3/arduino-ide-setup-99bba7be-288a-490d-b27b-1e63d17882fc
 
+OK, so I could not get the arduino bootloader installed.  Circuit Python it is.
+
 
 
 # Setup MQTT Server on the Raspbetty Pi
