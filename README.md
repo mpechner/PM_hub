@@ -20,6 +20,7 @@ https://docs.arduino.cc/tutorials/uno-wifi-rev2/uno-wifi-r2-mqtt-device-to-devic
 Setup the arduino env for this board:\
 https://learn.adafruit.com/adafruit-qt-py-esp32-s3/arduino-ide-setup-99bba7be-288a-490d-b27b-1e63d17882fc
 
+OK, so I could not get the arduino bootloader installed.  Circuit Python it is.
 
 
 # Setup MQTT Server on the Raspbetty Pi
@@ -41,6 +42,17 @@ Restarted the mosquitto.service
 
 Setup a user and password
 sudo mosquitto_passwd -c /etc/mosquitto/passwd parachutemobile
+
+# Notes on paho software
+https://github.com/eclipse/paho.mqtt.python
+
+https://eclipse.dev/paho/files/paho.mqtt.python/html/client.html
+
+https://cedalo.com/blog/configuring-paho-mqtt-python-client-with-examples/
+
+https://www.emqx.com/en/blog/how-to-use-mqtt-in-python
+
+
 
 Install paho to write the code to read messages.  
  `apt install python3-paho-mqtt`
