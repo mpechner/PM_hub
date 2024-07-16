@@ -12,6 +12,21 @@ I did this instead. I added this line to `/etc/rc.local`
 `nmcli device wifi hotspot ssid MY_SSID password MY_PASSWORD`
 
 # Setup MQTT client board
+## Env Setup
+Install the circuit python pip wrapper. pipx setups of a venv for python packages the run a commands.  Keeps the smallest venv need for the one command.  pipx by default installs un `~/.local`. Here are the docs\
+`https://pypi.org/project/pipx/`
+
+```
+pip install pipx
+pipx install circup
+```
+You need to isntall:\
+```
+circup install adafruit_connection_manager
+circup install adafruit_requests
+circup install adafruit minimqtt
+```
+
 Using https://www.adafruit.com/product/5700
 
 OK, so I could not get the arduino bootloader installed.  Circuit Python it is.
@@ -21,6 +36,7 @@ MQTT is the library adafruit ported to circuitpython \
 
 Documentation\
 `https://docs.circuitpython.org/projects/minimqtt/en/latest/`
+
 
 
 # Setup MQTT Server on the Raspbetty Pi
