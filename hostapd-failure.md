@@ -1,3 +1,19 @@
+# marks Notes:
+/etc/hostap/hostap.conf
+```
+interface=wlan0_ap
+ssid=pistar
+hw_mode=g
+macaddr_acl=0
+auth_algs=1
+channel=6
+wpa=0
+wpa_passphrase=raspberry
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+```
+
 # hostapd -failed
 I tried to setup hostapd and the connecrtion never worked.
 
@@ -12,6 +28,7 @@ Also asked "what is the bibliography for this response"
 * dnsmasq http://www.thekelleys.org.uk/dnsmasq/doc.html
 * debian wiki wifi notes https://wiki.debian.org/WiFi/HowToUse
 * Raspberry pi not in making it an AP https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md
+* bookworm specific: https://raspberrytips.com/access-point-setup-raspberry-pi/
 
 ## turn off wpa_supplicatnad and reomve wlan0 from NetworkManager
 
