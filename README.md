@@ -14,13 +14,13 @@ I did this instead. I added this line to `/etc/rc.local`
 # Setup MQTT client board
 Using https://www.adafruit.com/product/5700
 
-As this is a simple read data and publish using mqtt over wifi, arduino is perfect for this task.\
-https://docs.arduino.cc/tutorials/uno-wifi-rev2/uno-wifi-r2-mqtt-device-to-device/
-
-Setup the arduino env for this board:\
-https://learn.adafruit.com/adafruit-qt-py-esp32-s3/arduino-ide-setup-99bba7be-288a-490d-b27b-1e63d17882fc
-
 OK, so I could not get the arduino bootloader installed.  Circuit Python it is.
+
+MQTT is the library adafruit ported to circuitpython \
+`https://github.com/adafruit/Adafruit_CircuitPython_MiniMQTT`
+
+Documentation\
+`https://docs.circuitpython.org/projects/minimqtt/en/latest/`
 
 
 # Setup MQTT Server on the Raspbetty Pi
