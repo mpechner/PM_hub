@@ -6,11 +6,11 @@ FIRST this is a brain dump and learning state.
 
 Parachute Mobile has had an APRS, aprs.org, radio that has transmitted spO2 along with the location and altitude of the jumper. I have wanted to expand to sensors other than just spO2. Was not possible with the current gear. But with MQTT, the raspberry pi and timy circuit python boards with wifi onboard, it is very possible.
 
-Here is the one gotcha that needs to be tested. Teeny tiny antennas and possible issues with the jumpers body blocking the signal.  So the first test will be mounting the pi on the chest.  Then put the python board at different locations and see what the packet loss is.
+Here is the one gotcha that needs to be tested. Teeny tiny antennas and possible issues with the jumpers body blocking the signal.  So the first test will be mounting the pi on the chest.  Then put the python board at different locations and see what the packet loss is. [Initial Test](Initial_Test.md)
 
 # misc notes
 
-You can read about my failure to get hostapd running on hostapd-fail.md. I do want to get it running at some point since it is the proper method.
+You can read about my [failure to get hostapd running](hostapd-failure.md). I do want to get it running at some point since it is the proper method.
 
 After talking to a friend he convinced me to abandon bluetooth and use wifi.
 
