@@ -24,7 +24,8 @@ You need to isntall:\
 ```
 circup install adafruit_connection_manager
 circup install adafruit_requests
-circup install adafruit minimqtt
+circup install adafruit_minimqtt
+circup install adafruit_connection_manager
 ```
 
 Using https://www.adafruit.com/product/5700
