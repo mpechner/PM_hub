@@ -7,3 +7,7 @@
 # credentials here, such as Adafruit IO username and key, etc.
 CIRCUITPY_WIFI_SSID = "ssid"
 CIRCUITPY_WIFI_PASSWORD = "pass phrase"
+MQTT_USER = "user"
+MQTT_PASSWORD = "password"
+SERVER_HOST="host"
+TOPIC="mqtt-topic"
