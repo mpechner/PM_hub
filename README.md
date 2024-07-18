@@ -5,11 +5,16 @@ You can read about my failure to get hostapd running on hostapd-fail.md. I do wa
 
 After talking to a friend he convinced me to abandon bluetooth and use wifi.
 
+The client code and paho clients works.
+
 # Setting up Raspberry Pi as a hotspot
 
 I did this instead. I added this line to `/etc/rc.local`
 
 `nmcli device wifi hotspot ssid MY_SSID password MY_PASSWORD`
+
+Since I want the wlan0 ip range to be static I need to try again.
+Was given a link to the current version of raspian. Will give this another shot.
 
 # Setup MQTT client board
 ## Env Setup
