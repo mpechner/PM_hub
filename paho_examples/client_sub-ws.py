@@ -32,7 +32,7 @@ def on_message_tuple(mqttc, obj, msg):
     print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
 
 
-def on_message_newtopic(mqttc, obj, msg):
+def on_message_time(mqttc, obj, msg):
     print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
 
 
@@ -57,7 +57,7 @@ mqttc.on_subscribe = on_subscribe
 mqttc.on_log = on_log
 mqttc.connect("localhost", 1883, 60)
 mqttc.message_callback_add("tuple", on_message_tuple)
-mqttc.message_callback_add("newtopic", on_message_newtopic)
+mqttc.message_callback_add("timer", on_message_time)
 mqttc.subscribe("#", 2)
 
 mqttc.loop_forever()
