@@ -1,3 +1,5 @@
+This failed. I was using notes for the wrong release. going to tray again using bookworm specific notes https://raspberrytips.com/access-point-setup-raspberry-pi/
+
 # marks Notes:
 /etc/hostap/hostap.conf
 ```
