@@ -7,6 +7,9 @@ There is no dhcp serever.
 https://www.server-world.info/en/note?os=Debian_12&p=dhcp&f=1
 
 # Network manager Changes
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/configuring-networkmanager-to-ignore-certain-devices_configuring-and-managing-networking#permanently-configuring-a-device-as-unmanaged-in-networkmanager_configuring-networkmanager-to-ignore-certain-devices
+
+Provided the information for this change
 ```
 [keyfile]
 unmanaged-devices=interface-name:wlan0
