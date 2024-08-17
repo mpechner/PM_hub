@@ -4,8 +4,8 @@
 sudo apt-get update && sudo apt-get upgrade -y
 
 # Install necessary packages
-sudo apt install firmware-brcm802111
-sudo apt-get install -y hostapd dnsmasq iptables-persistent dhcpcd5 vim
+sudo apt install firmware-brcm802111 nmap 
+sudo apt-get install -y hostapd dnsmasq iptables-persistent dhcpcd5 vim lsof
 
 
 # Stop services for configuration
