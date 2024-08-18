@@ -74,8 +74,9 @@ mqttc.connect(True, os.getenv("SERVER_HOST"), 1883, 60)
 topic = os.getenv("TOPIC")
 mqttc.subscribe(topic)
 
-ii = 0
-while True:
+try:
+ ii = 0
+ while True:
     #print(dir(mqttc))
     #print(topic, "foo " + str(ii))
     mqttc.publish(topic, "foo  " + str(ii))
@@ -83,3 +84,7 @@ while True:
     print(ii)
     time.sleep(5)
     ii += 1
+except exception as ex:
+    print(ex)
+    time.sleep(30)
+    microcontroller.reset()

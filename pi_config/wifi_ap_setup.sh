@@ -14,7 +14,6 @@ fi
  apt install -y firmware-brcm802111 nmap 
  apt-get install -y hostapd dnsmasq iptables-persistent dhcpcd5 vim lsof
 
-
 # Stop services for configuration
  systemctl stop hostapd
  systemctl stop dnsmasq
