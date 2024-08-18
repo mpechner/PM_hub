@@ -13,16 +13,25 @@ import socketpool
 import adafruit_minimqtt.adafruit_minimqtt as MQTT
 
 print(f"Connecting to {os.getenv('CIRCUITPY_WIFI_SSID')}")
-wifi.radio.connect(
-    os.getenv("CIRCUITPY_WIFI_SSID"), os.getenv("CIRCUITPY_WIFI_PASSWORD")
-)
+print(f"pass to {os.getenv('CIRCUITPY_WIFI_PASSWORD')}")
+while True:
+    try:
+        res = wifi.radio.connect(
+            os.getenv("CIRCUITPY_WIFI_SSID"), os.getenv("CIRCUITPY_WIFI_PASSWORD")
+        )
+    except Exception as ex:
+        print(ex)
+        sleep(15)
+        continue
+    break
+
 print(f"Connected to {os.getenv('CIRCUITPY_WIFI_SSID')}")
 print(f"My IP address: {wifi.radio.ipv4_address}")
 
 MQTT_USER = os.getenv("MQTT_USER")
 MQTT_PASSWORD = os.getenv("MQTT_PASSWORD")
 
-ping_ip = ipaddress.IPv4Address("8.8.8.8")
+ping_ip = ipaddress.IPv4Address("192.168.99.2")
 ping = wifi.radio.ping(ip=ping_ip)
 
 # retry once if timed out
@@ -30,7 +39,7 @@ if ping is None:
     ping = wifi.radio.ping(ip=ping_ip)
 
 if ping is None:
-    print("Couldn't ping 'google.com' successfully")
+    print("Couldn't ping successfully")
 else:
     # convert s to ms
     print(f"Pinging 'google.com' took: {ping * 1000} ms")
@@ -38,11 +47,11 @@ else:
 pool = socketpool.SocketPool(wifi.radio)
 #requests = adafruit_requests.Session(pool, ssl.create_default_context())
 
-# print(requests)
+print("SERVER_HOST: " +os.getenv("SERVER_HOST") + ":" )
 
 mqttc = MQTT.MQTT(
     broker=os.getenv("SERVER_HOST"),
-    port=1183,
+    port=1883,
     username=MQTT_USER,
     password=MQTT_PASSWORD,
     socket_pool=pool
@@ -68,5 +77,5 @@ while True:
     mqttc.publish(topic, "foo  " + str(ii))
 
     print(ii)
-    time.sleep(10)
+    time.sleep(5)
     ii += 1
