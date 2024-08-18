@@ -8,6 +8,7 @@ Parachute Mobile has had an APRS, aprs.org, radio that has transmitted spO2 alon
 
 Here is the one gotcha that needs to be tested. Teeny tiny antennas and possible issues with the jumpers body blocking the signal.  So the first test will be mounting the pi on the chest.  Then put the python board at different locations and see what the packet loss is. [Initial Test](Initial_Test.md)
 
+To see the progress, look here [Status](Status.md)
 
 # Raspberry Pi 5 Setup
 
