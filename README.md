@@ -17,8 +17,11 @@ I loaded the headless 64bit raspian.
 I made heavy use of chatgpt for the initial bootstrap.  I had to be able to start the problem clearly. Still had issues around getting wlan0 to come up and act as a correct access point.
 
 The final configuration is piconfig/wifi_ap_setup.sh
+Set up the MQTT password:
 
-After it started accepting MQTT packets via wlan0 from the qt board.  Able to SSH in to wifi or eth0.  From wifi, access the internet. So all good.
+`mosquitto_sub -h localhost -u parachutemobile -P parachutemobile  -v -t timer`
+
+After it started, it is accepting MQTT packets via wlan0 from the qt board.  Able to SSH in to wifi or eth0.  From wifi, access the internet. So all good.
 
 
 # misc notes
