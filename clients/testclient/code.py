@@ -5,15 +5,14 @@
 import os
 import time
 import ipaddress
-#import ssl
 import wifi
 import socketpool
-#import adafruit_connection_manager
-#import adafruit_requests
 import adafruit_minimqtt.adafruit_minimqtt as MQTT
+import microcontroller
 
 print(f"Connecting to {os.getenv('CIRCUITPY_WIFI_SSID')}")
 print(f"pass to {os.getenv('CIRCUITPY_WIFI_PASSWORD')}")
+attempts=0
 while True:
     try:
         res = wifi.radio.connect(
@@ -21,7 +20,12 @@ while True:
         )
     except Exception as ex:
         print(ex)
-        sleep(15)
+
+        if attempts == 5:
+            microcontroller.reset()
+        attempts = attempts + 1
+        time.sleep(2)
+
         continue
     break
 
