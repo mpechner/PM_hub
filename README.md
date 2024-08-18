@@ -16,7 +16,8 @@ I loaded the headless 64bit raspian.
 
 I made heavy use of chatgpt for the initial bootstrap.  I had to be able to start the problem clearly. Still had issues around getting wlan0 to come up and act as a correct access point.
 
-The final configuration is piconfig/wifi_ap_setup.sh
+The final configuration is piconfig/wifi_ap_setup.sh Also piconfig/iptablesetup.sh.  wifi_ap_setup.sh can be run multiple times.  running iptablesetup.sh multiple times will polute iptables.
+
 Set up the MQTT password:
 
 `mosquitto_sub -h localhost -u parachutemobile -P parachutemobile  -v -t timer`
