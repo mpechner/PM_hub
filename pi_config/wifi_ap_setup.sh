@@ -84,11 +84,19 @@ sudo systemctl start dhcpcd
 sudo systemctl enable dhcpcd
 
 # mqtt setup
+mkdir /var/cache/mosquitto/
+chmod 0755 /var/cache/mosquitto/
+
 cat <<EOF | sudo tee /etc/mosquitto/conf.d/extra.conf
 per_listener_settings true
 allow_anonymous false
 listener 1883
+persistence true
+autosave_interval  600
+log_timestamp true
+log_timestamp_format %Y-%m-%dT%H:%M:%S
 password_file /etc/mosquitto/passwd
+persistence_file /var/cache/mosquitto/mosquitto.db
 EOF
 
 
