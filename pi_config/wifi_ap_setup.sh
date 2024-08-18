@@ -80,6 +80,8 @@ touch /etc/mosquitto/passwd
 chmod 0644  /etc/mosquitto/passwd
 
 
+apt install -y mosquitto-dev   mosquitto-clients
+
 cat <<EOF |  tee /etc/mosquitto/conf.d/extra.conf
 per_listener_settings true
 allow_anonymous false
@@ -93,7 +95,6 @@ persistence_file /var/cache/mosquitto/mosquitto.db
 EOF
 
 
-apt install mosquitto-dev   mosquitto-clients
 systemctl enable mosquitto.service
 systemctl start mosquitto.service
 
