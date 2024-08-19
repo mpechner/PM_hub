@@ -72,15 +72,16 @@ systemctl start dnsmasq
 systemctl start dhcpcd
 systemctl enable dhcpcd
 
+
+
+apt install -y mosquitto-dev   mosquitto-clients
+
 # mqtt setup
 mkdir /var/cache/mosquitto/
 chmod 0755 /var/cache/mosquitto/
 
 touch /etc/mosquitto/passwd
 chmod 0644  /etc/mosquitto/passwd
-
-
-apt install -y mosquitto-dev   mosquitto-clients
 
 cat <<EOF |  tee /etc/mosquitto/conf.d/extra.conf
 per_listener_settings true
