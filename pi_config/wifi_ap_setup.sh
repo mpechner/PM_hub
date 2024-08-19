@@ -22,14 +22,15 @@ fi
 # Configure static IP for wlan0
 cat <<EOF |  tee /etc/dhcpcd.conf
 interface wlan0
-	static ip_address=192.168.99.2/24
-	static routers=192.168.99.1
-	static domain_name_servers=192.168.99.1 8.8.8.8
-	nohook wpa_supplicant
+static ip_address=192.168.99.2/24
+static routers=192.168.99.1
+static domain_name_servers=192.168.99.1 8.8.8.8
+nohook wpa_supplicant
 EOF
 
 # Restart dhcpcd service
- service dhcpcd restart
+systemctl enable  dhcpcd
+systemctl start dhcpcd 
 
 # Configure DHCP server (dnsmasq)
  mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
