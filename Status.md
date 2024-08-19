@@ -10,3 +10,5 @@ The  Adafruit QT board runs a sample that just sends base packet.  I tested that
 ## August 18, 2024
 Found various issues.  Had configurations out of order.  Had to add code to force hostapd to wait on dhcpcd to be runniner and for mosquitto to wait on hostapd.
 I think I need to make sure that from the qt board the publish succeeded. I think since there is a delay with mosquitto starting, the code on the qt board gets into a weird state.
+
+Still need to bootstrap and confiogure again with the above changes.  After 7PM, time to chill.
