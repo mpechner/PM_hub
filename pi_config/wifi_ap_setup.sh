@@ -59,10 +59,36 @@ EOF
 # Point hostapd to the config file
  sed -i 's|#DAEMON_CONF=""|DAEMON_CONF="/etc/hostapd/hostapd.conf"|' /etc/default/hostapd
 
+# Step 2: Add delay to Mosquitto service
+echo "Adding 20-second delay to Mosquitto service..."
+mkdir -p /etc/systemd/system/mosquitto.service.d
+cat <<EOF > /etc/systemd/system/mosquitto.service.d/override.conf
+[Unit]
+After=hostapd.service
+Requires=hostapd.service
+[Service]
+ExecStartPre=/bin/sleep 20
+EOF
+
+# Step 3: Reload systemd to apply the changes
+echo "Reloading systemd daemon..."
+systemctl daemon-reload
+
 # Enable IP forwarding
 sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 sysctl -p
 
+mkdir -p /etc/systemd/system/hostapd.service.d
+cat <<EOF > /etc/systemd/system/hostapd.service.d/override.conf
+[Unit]
+After=dhcpcd.service
+Requires=dhcpcd.service
+[Service]
+ExecStartPre=/bin/sleep 10
+EOF
+
+echo "Reloading systemd daemon..."
+systemctl daemon-reload
 
 # Enable and start services
 systemctl unmask hostapd
