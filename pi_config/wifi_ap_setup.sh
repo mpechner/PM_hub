@@ -12,7 +12,7 @@ fi
 
 # Install necessary packages
  apt install -y firmware-brcm802111 nmap 
- apt-get install -y hostapd dnsmasq iptables-persistent dhcpcd5 vim lsof
+ apt-get install -y hostapd dnsmasq iptables-persistent dhcpcd5 vim lsof nmap
 
 # Stop services for configuration
  systemctl stop hostapd
