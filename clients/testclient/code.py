@@ -13,18 +13,20 @@ import microcontroller
 print(f"Connecting to {os.getenv('CIRCUITPY_WIFI_SSID')}")
 print(f"pass to {os.getenv('CIRCUITPY_WIFI_PASSWORD')}")
 attempts=0
+
 while True:
+    print("SSID:" + os.getenv("CIRCUITPY_WIFI_SSID") + "  pass:" + os.getenv("CIRCUITPY_WIFI_PASSWORD") + ':')
     try:
         res = wifi.radio.connect(
             os.getenv("CIRCUITPY_WIFI_SSID"), os.getenv("CIRCUITPY_WIFI_PASSWORD")
         )
     except Exception as ex:
-        print(ex)
+        print("wifi connect fail " + str(attempts) + "  " + str(ex))
 
-        if attempts == 5:
-            microcontroller.reset()
+        #if attempts == 5:
+            #microcontroller.reset()
         attempts = attempts + 1
-        time.sleep(2)
+        time.sleep(5)
 
         continue
     break
@@ -85,6 +87,6 @@ try:
     time.sleep(5)
     ii += 1
 except exception as ex:
-    print(ex)
+    print("loop fail:" + str(ex))
     time.sleep(30)
-    microcontroller.reset()
+    #microcontroller.reset()
