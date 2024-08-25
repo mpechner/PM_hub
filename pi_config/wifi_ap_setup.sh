@@ -12,7 +12,7 @@ fi
 
 # Install necessary packages
  apt install -y firmware-brcm802111 nmap 
- apt-get install -y hostapd dnsmasq iptables-persistent dhcpcd5 vim lsof nmap
+ apt-get install -y hostapd dnsmasq iptables-persistent dhcpcd5 vim 
 
 # Stop services for configuration
  systemctl stop hostapd
@@ -67,7 +67,7 @@ cat <<EOF > /etc/systemd/system/mosquitto.service.d/override.conf
 After=hostapd.service
 Requires=hostapd.service
 [Service]
-ExecStartPre=/bin/sleep 20
+ExecStartPre=/bin/sleep 10
 EOF
 
 # Step 3: Reload systemd to apply the changes
@@ -81,6 +81,19 @@ sysctl -p
 mkdir -p /etc/systemd/system/hostapd.service.d
 cat <<EOF > /etc/systemd/system/hostapd.service.d/override.conf
 [Unit]
+After=dnsmasq.service
+Requires=dnsmasq.service
+[Service]
+ExecStartPre=/bin/sleep 10
+EOF
+
+echo "Reloading systemd daemon..."
+systemctl daemon-reload
+
+
+mkdir -p /etc/systemd/system/dnsmasq.service.d
+cat <<EOF > /etc/systemd/system/dnsmasq.service.d/override.conf
+[Unit]
 After=dhcpcd.service
 Requires=dhcpcd.service
 [Service]
@@ -89,15 +102,14 @@ EOF
 
 echo "Reloading systemd daemon..."
 systemctl daemon-reload
-
 # Enable and start services
+systemctl enable dhcpcd
+systemctl restart dhcpcd
+systemctl enable dnsmasq
+systemctl restart dnsmasq
 systemctl unmask hostapd
 systemctl enable hostapd
-systemctl enable dnsmasq
-systemctl start hostapd
-systemctl start dnsmasq
-systemctl start dhcpcd
-systemctl enable dhcpcd
+systemctl restart hostapd
 
 
 
