@@ -9,6 +9,22 @@ import wifi
 import socketpool
 import adafruit_minimqtt.adafruit_minimqtt as MQTT
 import microcontroller
+import traceback
+
+def MQTT_connect(mqtt):
+    if mqtt.is_connected():
+        return
+
+    conn_retry = 0
+    while ( conn_retry < 3 ):
+        ret =  mqtt.reconnect()
+        if ret == 0:
+            return
+        print("conn error: ", ret)
+        mqtt.disconnect()
+        time.sleep(5)
+        conn_retry = conn_retry + 1
+    print("more than 3 reconnects: " , conn_retry)
 
 print(f"Connecting to {os.getenv('CIRCUITPY_WIFI_SSID')}")
 print(f"pass to {os.getenv('CIRCUITPY_WIFI_PASSWORD')}")
@@ -23,8 +39,8 @@ while True:
     except Exception as ex:
         print("wifi connect fail " + str(attempts) + "  " + str(ex))
 
-        #if attempts == 5:
-            #microcontroller.reset()
+        if attempts == 5:
+            microcontroller.reset()
         attempts = attempts + 1
         time.sleep(5)
 
@@ -63,30 +79,36 @@ mqttc = MQTT.MQTT(
     socket_pool=pool
 )
 
+
+
 def on_publish(client, userdata,topic, pid  ):
      print("Published to {0} with PID {1}".format(topic, pid))
 
 mqttc.on_publish = on_publish
 mqttc.username_pw_set(MQTT_USER, MQTT_PASSWORD)
 
-mqttc.connect(True, os.getenv("SERVER_HOST"), 1883, 60)
 
-#mqttc.connect()
 
+#MQTT_connect(mqttc)
+mqttc.connect()
 topic = os.getenv("TOPIC")
 mqttc.subscribe(topic)
 
 try:
  ii = 0
  while True:
+    MQTT_connect(mqttc)
     #print(dir(mqttc))
     #print(topic, "foo " + str(ii))
+    print("is connected? ", mqttc.is_connected())
     mqttc.publish(topic, "foo  " + str(ii))
 
     print(ii)
     time.sleep(5)
     ii += 1
-except exception as ex:
+except Exception as ex:
     print("loop fail:" + str(ex))
+    print('{} encountered, exiting: {}\n{}'.format(type(ex), ex, traceback.format_exception(ex)))
     time.sleep(30)
     #microcontroller.reset()
+
