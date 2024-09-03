@@ -113,10 +113,5 @@ while True:
     except Exception as ex:
         print("loop fail:" + str(ex))
         print('{} encountered, exiting: {}\n{}'.format(type(ex), ex, traceback.format_exception(ex)))
-        time.sleep(30)
+        time.sleep(15)
         microcontroller.reset()
-
-
-
-
-
