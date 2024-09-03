@@ -38,15 +38,17 @@ while True:
         )
     except Exception as ex:
         print("wifi connect fail " + str(attempts) + "  " + str(ex))
-
-        if attempts == 5:
-            microcontroller.reset()
+        print('{} encountered, exiting: {}\n{}'.format(type(ex), ex, traceback.format_exception(ex)))
+        #if attempts == 5:
+        #    microcontroller.reset()
         attempts = attempts + 1
-        time.sleep(5)
+        time.sleep(45)
 
         continue
     break
 
+print("wifi ret: ", res)
+print("wifi: ", wifi.radio)
 print(f"Connected to {os.getenv('CIRCUITPY_WIFI_SSID')}")
 print(f"My IP address: {wifi.radio.ipv4_address}")
 
@@ -67,6 +69,7 @@ else:
     print(f"Pinging 'google.com' took: {ping * 1000} ms")
 
 pool = socketpool.SocketPool(wifi.radio)
+print(pool)
 #requests = adafruit_requests.Session(pool, ssl.create_default_context())
 
 print("SERVER_HOST: " +os.getenv("SERVER_HOST") + ":" )
@@ -76,10 +79,11 @@ mqttc = MQTT.MQTT(
     port=1883,
     username=MQTT_USER,
     password=MQTT_PASSWORD,
-    socket_pool=pool
+    socket_pool=pool,
+    keep_alive=300,
+    socket_timeout = 5,
+    connect_retries = 10
 )
-
-
 
 def on_publish(client, userdata,topic, pid  ):
      print("Published to {0} with PID {1}".format(topic, pid))
@@ -93,22 +97,26 @@ mqttc.username_pw_set(MQTT_USER, MQTT_PASSWORD)
 mqttc.connect()
 topic = os.getenv("TOPIC")
 mqttc.subscribe(topic)
+ii = 0
+while True:
+    try:
 
-try:
- ii = 0
- while True:
-    MQTT_connect(mqttc)
-    #print(dir(mqttc))
-    #print(topic, "foo " + str(ii))
-    print("is connected? ", mqttc.is_connected())
-    mqttc.publish(topic, "foo  " + str(ii))
+        MQTT_connect(mqttc)
+        #print(dir(mqttc))
+        #print(topic, "foo " + str(ii))
+        print("is connected? ", mqttc.is_connected())
+        mqttc.publish(topic, "foo  " + str(ii))
 
-    print(ii)
-    time.sleep(5)
-    ii += 1
-except Exception as ex:
-    print("loop fail:" + str(ex))
-    print('{} encountered, exiting: {}\n{}'.format(type(ex), ex, traceback.format_exception(ex)))
-    time.sleep(30)
-    #microcontroller.reset()
+        print(ii)
+        time.sleep(5)
+        ii += 1
+    except Exception as ex:
+        print("loop fail:" + str(ex))
+        print('{} encountered, exiting: {}\n{}'.format(type(ex), ex, traceback.format_exception(ex)))
+        time.sleep(30)
+        microcontroller.reset()
+
+
+
+
 
