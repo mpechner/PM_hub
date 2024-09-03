@@ -131,7 +131,6 @@ autosave_interval  600
 log_timestamp true
 log_timestamp_format %Y-%m-%dT%H:%M:%S
 password_file /etc/mosquitto/passwd
-persistence_file /var/cache/mosquitto/mosquitto.db
 EOF
 
 
